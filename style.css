@@ -1,0 +1,28 @@
+body {
+    background: #fefefe;
+    font-family: dosis, sans-serif;
+}
+h1 {
+    color: #444;
+    font-size: 60px;
+    text-align: center;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: lekton, monospace;
+}
+h2 {
+    font-weight: normal;
+    text-align: center;
+}
+ul {
+    padding: 0 20px;
+    margin: 0 auto;
+    text-align: center;
+
+}
+li {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 6px;
+}
