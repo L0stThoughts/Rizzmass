@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>
+            <span id="number"></span>
+        </h1>
+        
+        <ul id="list">
+            <li id="button1"></li>
+            <li id="button2"></li>
+            <li id="button3"></li>
+            <li id="button4"></li>
+        </ul>
+
+        <h2 id="result">
+           Guess the color! 
+        </h2>
+
+        <p class="tiles">
+            <span class="diff">Difficulty:</span>
+            <a href="./diff2.html">2</a>
+            <a href="./index.html">3</a>
+            <strong>4</strong>
+            <a href="./diff5.html">5</a>
+            <a href="./diff6.html">6</a>
+        </p>
+    </div>
+
+    <script>
+        const result = document.createElement("result");
+    
+        let correct = true;
+
+        let letters = "0123456789ABCDEF"; 
+    
+        var color = "#";
+    
+        function generateColor(){
+            for (let i = 0; i < 6; i++){
+                color += letters[(Math.floor(Math.random() * 16))]
+            }  
+        }
+    
+        generateColor();
+    
+        const button1 = document.getElementById('button1').style.background=color;
+        const button2 = document.getElementById('button2').style.background=color;
+        const button3 = document.getElementById('button3').style.background=color;
+        const button4 = document.getElementById('button4').style.background=color;
+    
+        document.getElementById("button1").addEventListener('click', function(e) {
+            if (e.target && e.target.matches("li")) {
+                document.getElementById("button1").style.opacity = 0;
+            }
+        });
+    
+        document.getElementById("button2").addEventListener('click', function(e) {
+            if (e.target && e.target.matches("li")) {
+                document.getElementById("button2").style.opacity = 0;
+            }
+        });
+    
+        document.getElementById("button3").addEventListener('click', function(e) {
+            if (e.target && e.target.matches("li")) {
+                document.getElementById("button3").style.opacity = 0;
+            }
+        });
+    
+        document.getElementById("button4").addEventListener('click', function(e) {
+            if (e.target && e.target.matches("li")) {
+                document.getElementById("button4").style.opacity = 0;
+            }
+        });
+
+        ul.addEventListener('click', function(e) {
+            if (e.target.tagName === 'li'){
+            alert(e.target.id);
+                if(correct === true){
+    
+                    result.textContent = "CORRECT ANSWER! YOU WIN!"
+                } else if (correct === false) {
+                    result.textContent = "WRONG ANSWER! TRY AGAIN!"
+                }
+            }
+        });
+        </script>
+</body>
+</html>
