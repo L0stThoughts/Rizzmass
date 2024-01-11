@@ -1,80 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Color Guessing Game</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div id="container">
-        <h1>
-            <span id="number"></span>
-        </h1>
-        
-        <ul id="list">
-            <li id="button1"></li>
-            <li id="button2"></li>
-        </ul>
+      <h1>
+        <span id="number"></span>
+      </h1>
 
-        <h2 id="result">
-           Guess the color! 
-        </h2>
+      <ul id="list">
+        <li id="button1"></li>
+        <li id="button2"></li>
+      </ul>
 
-        <p class="tiles">
-            <span class="diff">Difficulty:</span>
-            <strong>2</strong>
-            <a href="./index.html">3</a>
-            <a href="./diff4.html">4</a>
-            <a href="./diff5.html">5</a>
-            <a href="./diff6.html">6</a>
-        </p>
+      <h2 id="result">Guess the color!</h2>
+
+      <p class="tiles">
+        <span class="diff">Difficulty:</span>
+        <strong>2</strong>
+        <a href="./defaultDiff.html">3</a>
+        <a href="./diff4.html">4</a>
+        <a href="./diff5.html">5</a>
+        <a href="./diff6.html">6</a>
+      </p>
+
+      <div class="center">
+        <button id="restart">Restart</button>
+      </div>
     </div>
 
     <script>
-        const result = document.createElement("result");
-    
-        let correct = true;
+      function generateColor() {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+      }
 
-        let letters = "0123456789ABCDEF"; 
-    
-        var color = "#";
-    
-        function generateColor(){
-            for (let i = 0; i < 6; i++){
-                color += letters[(Math.floor(Math.random() * 16))]
-            }  
+      let color1 = generateColor();
+      let color2 = generateColor();
+
+      let button1 = (document.getElementById("button1").style.background =
+        color1);
+      let button2 = (document.getElementById("button2").style.background =
+        color2);
+
+      const restart = document.getElementById("restart");
+      restart.disabled = true;
+
+      function generateWin() {
+        var min = 0;
+        var max = 1;
+        var random = Math.floor(Math.random() * (max - min)) + min;
+
+        if (random === 0) {
+          color1 = generateColor();
+          button1 = document.getElementById("button1").style.background =
+            color1;
+          document.getElementById("number").innerHTML = color1;
+        } else if (random === 1) {
+          color2 = generateColor();
+          button2 = document.getElementById("button2").style.background =
+            color2;
+          document.getElementById("number").innerHTML = color2;
         }
-    
-        generateColor();
-    
-        const button1 = document.getElementById('button1').style.background=color;
-        const button2 = document.getElementById('button2').style.background=color;
-    
-    
-        document.getElementById("button1").addEventListener('click', function(e) {
-            if (e.target && e.target.matches("li")) {
-                document.getElementById("button1").style.opacity = 0;
+      }
+
+      generateWin();
+
+      document
+        .getElementById("button1")
+        .addEventListener("click", function (e) {
+          if (e.target && e.target.matches("li")) {
+            if (color1 === document.getElementById("number").textContent) {
+              document.getElementById("result").innerHTML =
+                "That's the correct color. You win";
+              document.getElementById("restart").style.opacity = 1;
+              restart.disabled = false;
+            } else {
+              document.getElementById("button1").style.opacity = 0;
+              document.getElementById("result").innerHTML =
+                "That's the wrong color. Try again";
             }
-        });
-    
-        document.getElementById("button2").addEventListener('click', function(e) {
-            if (e.target && e.target.matches("li")) {
-                document.getElementById("button2").style.opacity = 0;
-            }
+          }
         });
 
-        ul.addEventListener('click', function(e) {
-            if (e.target.tagName === 'li'){
-            alert(e.target.id);
-                if(correct === true){
-    
-                    result.textContent = "CORRECT ANSWER! YOU WIN!"
-                } else if (correct === false) {
-                    result.textContent = "WRONG ANSWER! TRY AGAIN!"
-                }
+      document
+        .getElementById("button2")
+        .addEventListener("click", function (e) {
+          if (e.target && e.target.matches("li")) {
+            if (color2 === document.getElementById("number").textContent) {
+              document.getElementById("result").innerHTML =
+                "That's the correct color. You win";
+              document.getElementById("restart").style.opacity = 1;
+              restart.disabled = false;
+            } else {
+              document.getElementById("button2").style.opacity = 0;
+              document.getElementById("result").innerHTML =
+                "That's the wrong color. Try again";
             }
+          }
         });
-        </script>
-</body>
+
+      function restartGame() {
+        document.getElementById("result").innerHTML = "Guess the color!";
+        document.getElementById("button1").style.opacity = 1;
+        document.getElementById("button2").style.opacity = 1;
+        color1 = generateColor();
+        color2 = generateColor();
+
+        button1 = document.getElementById("button1").style.background = color1;
+        button2 = document.getElementById("button2").style.background = color2;
+      }
+
+      document
+        .getElementById("restart")
+        .addEventListener("click", function (e) {
+          if (e.target && e.target.matches("button")) {
+            restart.disabled = true;
+            document.getElementById("restart").style.opacity = 0;
+
+            restartGame();
+            generateWin();
+          }
+        });
+    </script>
+  </body>
 </html>

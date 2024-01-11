@@ -16,9 +16,6 @@
         <li id="button1"></li>
         <li id="button2"></li>
         <li id="button3"></li>
-        <li id="button4"></li>
-        <li id="button5"></li>
-        <li id="button6"></li>
       </ul>
 
       <h2 id="result">Guess the color!</h2>
@@ -26,10 +23,10 @@
       <p class="tiles">
         <span class="diff">Difficulty:</span>
         <a href="./diff2.html">2</a>
-        <a href="./defaultDiff.html">3</a>
+        <strong>3</strong>
         <a href="./diff4.html">4</a>
         <a href="./diff5.html">5</a>
-        <strong>6</strong>
+        <a href="./diff6.html">6</a>
       </p>
 
       <div class="center">
@@ -41,12 +38,10 @@
       function generateColor() {
         return "#" + Math.floor(Math.random() * 16777215).toString(16);
       }
+
       let color1 = generateColor();
       let color2 = generateColor();
       let color3 = generateColor();
-      let color4 = generateColor();
-      let color5 = generateColor();
-      let color6 = generateColor();
 
       let button1 = (document.getElementById("button1").style.background =
         color1);
@@ -54,19 +49,13 @@
         color2);
       let button3 = (document.getElementById("button3").style.background =
         color3);
-      let button4 = (document.getElementById("button4").style.background =
-        color4);
-      let button5 = (document.getElementById("button5").style.background =
-        color5);
-      let button6 = (document.getElementById("button6").style.background =
-        color6);
 
       const restart = document.getElementById("restart");
       restart.disabled = true;
 
       function generateWin() {
         var min = 0;
-        var max = 5;
+        var max = 3;
         var random = Math.floor(Math.random() * (max - min)) + min;
 
         if (random === 0) {
@@ -84,21 +73,6 @@
           button3 = document.getElementById("button3").style.background =
             color3;
           document.getElementById("number").innerHTML = color3;
-        } else if (random === 3) {
-          color4 = generateColor();
-          button4 = document.getElementById("button4").style.background =
-            color4;
-          document.getElementById("number").innerHTML = color4;
-        } else if (random === 4) {
-          color5 = generateColor();
-          button5 = document.getElementById("button5").style.background =
-            color5;
-          document.getElementById("number").innerHTML = color4;
-        } else if (random === 5) {
-          color6 = generateColor();
-          button3 = document.getElementById("button6").style.background =
-            color6;
-          document.getElementById("number").innerHTML = color5;
         }
       }
 
@@ -155,76 +129,18 @@
           }
         });
 
-      document
-        .getElementById("button4")
-        .addEventListener("click", function (e) {
-          if (e.target && e.target.matches("li")) {
-            if (color4 === document.getElementById("number").textContent) {
-              document.getElementById("result").innerHTML =
-                "That's the correct color. You win";
-              document.getElementById("restart").style.opacity = 1;
-              restart.disabled = false;
-            } else {
-              document.getElementById("button4").style.opacity = 0;
-              document.getElementById("result").innerHTML =
-                "That's the wrong color. Try again";
-            }
-          }
-        });
-      document
-        .getElementById("button5")
-        .addEventListener("click", function (e) {
-          if (e.target && e.target.matches("li")) {
-            if (color5 === document.getElementById("number").textContent) {
-              document.getElementById("result").innerHTML =
-                "That's the correct color. You win";
-              document.getElementById("restart").style.opacity = 1;
-              restart.disabled = false;
-            } else {
-              document.getElementById("button5").style.opacity = 0;
-              document.getElementById("result").innerHTML =
-                "That's the wrong color. Try again";
-            }
-          }
-        });
-      document
-        .getElementById("button6")
-        .addEventListener("click", function (e) {
-          if (e.target && e.target.matches("li")) {
-            if (color6 === document.getElementById("number").textContent) {
-              document.getElementById("result").innerHTML =
-                "That's the correct color. You win";
-              document.getElementById("restart").style.opacity = 1;
-            } else {
-              document.getElementById("button6").style.opacity = 0;
-              document.getElementById("result").innerHTML =
-                "That's the wrong color. Try again";
-            }
-          }
-        });
-
       function restartGame() {
-        document.getElementById("result").innerHTML =
-                "Guess the color!";
+        document.getElementById("result").innerHTML = "Guess the color!";
         document.getElementById("button1").style.opacity = 1;
         document.getElementById("button2").style.opacity = 1;
         document.getElementById("button3").style.opacity = 1;
-        document.getElementById("button4").style.opacity = 1;
-        document.getElementById("button5").style.opacity = 1;
-        document.getElementById("button6").style.opacity = 1;
         color1 = generateColor();
         color2 = generateColor();
         color3 = generateColor();
-        color4 = generateColor();
-        color5 = generateColor();
-        color6 = generateColor();
 
         button1 = document.getElementById("button1").style.background = color1;
         button2 = document.getElementById("button2").style.background = color2;
         button3 = document.getElementById("button3").style.background = color3;
-        button4 = document.getElementById("button4").style.background = color4;
-        button5 = document.getElementById("button5").style.background = color5;
-        button6 = document.getElementById("button6").style.background = color6;
       }
 
       document

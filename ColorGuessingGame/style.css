@@ -26,6 +26,7 @@ li {
     width: 80px;
     height: 80px;
     margin: 10px;
+    border-style: ridge;
 }
 a {
     text-decoration: none;
@@ -43,4 +44,16 @@ p.tiles {
 
 .clicked {
     cursor: auto;
+}
+
+button{
+    border: none;
+    font-size: 20px;
+    opacity: 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
