@@ -26,7 +26,10 @@ li {
     width: 80px;
     height: 80px;
     margin: 10px;
-    border-style: ridge;
+    border-style: inset; 
+}
+li:hover{
+    filter: brightness(80%);
 }
 a {
     text-decoration: none;
@@ -52,8 +55,19 @@ button{
     opacity: 0;
 }
 
+button:hover{
+    filter: brightness(70%);
+}
+
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.homeButton {
+    background: none;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
 }

@@ -32,10 +32,18 @@
       <div class="center">
         <button id="restart">Restart</button>
       </div>
+
+      <div class="homeButton">
+        <a href="../index.html">
+          <button style="opacity: 1; font-size: 32px" id="home">
+            ⬅Click here to go back
+          </button>
+        </a>
+      </div>
     </div>
 
     <script>
-      function generateColor() {
+      function generateColor() {  // generates a color in a hex code
         return "#" + Math.floor(Math.random() * 16777215).toString(16);
       }
 
@@ -43,6 +51,7 @@
       let color2 = generateColor();
       let color3 = generateColor();
 
+      // applies random hex colors to square buttons
       let button1 = (document.getElementById("button1").style.background =
         color1);
       let button2 = (document.getElementById("button2").style.background =
@@ -53,6 +62,7 @@
       const restart = document.getElementById("restart");
       restart.disabled = true;
 
+      // generates a winning button using random
       function generateWin() {
         var min = 0;
         var max = 3;
@@ -78,6 +88,7 @@
 
       generateWin();
 
+      // button functions
       document
         .getElementById("button1")
         .addEventListener("click", function (e) {
@@ -129,6 +140,7 @@
           }
         });
 
+        // restarts the game by showing all the buttons and recoloring them
       function restartGame() {
         document.getElementById("result").innerHTML = "Guess the color!";
         document.getElementById("button1").style.opacity = 1;
@@ -143,6 +155,7 @@
         button3 = document.getElementById("button3").style.background = color3;
       }
 
+      // restart button function
       document
         .getElementById("restart")
         .addEventListener("click", function (e) {
